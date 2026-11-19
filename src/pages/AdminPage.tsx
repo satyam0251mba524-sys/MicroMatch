@@ -1,7 +1,8 @@
-import { Check, Copy, RotateCcw, X } from 'lucide-react';
+import { Check, Copy, Download, RotateCcw, X } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useApp } from '../store/AppContext';
 import type { BookingStatus, Creator, CreatorStatus } from '../types';
+import { downloadProjectZip } from '../utils/downloadZip';
 import { calculateCommission, formatIndianNumber, formatINR } from '../utils/format';
 
 type AdminTab = 'applications' | 'shortlists' | 'bookings' | 'results' | 'metrics';
@@ -196,7 +197,15 @@ export function AdminPage() {
           <h1 className="mt-1 font-display text-2xl font-bold text-zinc-950 sm:text-3xl">Founder Admin Panel</h1>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => void downloadProjectZip()}
+            className="inline-flex min-h-[40px] items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3.5 text-xs font-medium text-zinc-700 hover:bg-zinc-50"
+          >
+            <Download className="h-3.5 w-3.5" />
+            <span>Download Source (.zip)</span>
+          </button>
           {!confirmReset ? (
             <button
               type="button"

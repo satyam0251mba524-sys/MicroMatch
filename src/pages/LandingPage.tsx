@@ -1,9 +1,10 @@
-import { ArrowRight, CheckCircle2, ChevronDown, ExternalLink, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronDown, Download, ExternalLink, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
 import { CreatorAvatar } from '../components/CreatorAvatar';
 import { MICROMATCH_WHATSAPP } from '../data/seed';
 import { useApp } from '../store/AppContext';
 import type { Creator, PageRoute } from '../types';
+import { downloadProjectZip } from '../utils/downloadZip';
 import { formatIndianNumber, formatINR, formatWhatsAppHref } from '../utils/format';
 
 interface LandingPageProps {
@@ -512,6 +513,14 @@ export function LandingPage({ onNavigate, onSelectCreator }: LandingPageProps) {
                 className="text-xs font-medium text-zinc-600 hover:text-zinc-950"
               >
                 Post-Pilot Roadmap
+              </button>
+              <button
+                type="button"
+                onClick={() => void downloadProjectZip()}
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-600 hover:text-zinc-950 underline decoration-zinc-300 underline-offset-4"
+              >
+                <Download className="h-3.5 w-3.5" />
+                <span>Download Source (.zip)</span>
               </button>
               <a
                 href={whatsappFooterHref}
